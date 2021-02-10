@@ -86,6 +86,22 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  { // Step 5
+    title: 'New Article',
+    date: 'Feb 10th, 2021',
+    firstParagraph: `Bacon ipsum dolor amet spare ribs beef ribs fatback shoulder hamburger pancetta. Short loin frankfurter pastrami fatback ground
+          round beef ribs tenderloin turkey flank chuck andouille ribeye salami sirloin pork. Pig leberkas picanha meatloaf tail pork. Shoulder picanha
+          ham hock ham. Chislic short ribs pork shankle tongue ham hock sausage filet mignon doner shoulder. Sausage brisket tri-tip short ribs pork 
+          bresaola shankle turkey. Meatball pork loin sirloin hamburger rump kielbasa strip steak landjaeger boudin bacon pork chicken.`,
+    secondParagraph: `Short ribs brisket meatball fatback turkey, pastrami burgdoggen prosciutto ham hock ball tip rump. Jowl chuck bresaola landjaeger 
+          burgdoggen ball tip kielbasa tail short loin. Andouille bresaola pastrami drumstick shank t-bone, swine tri-tip. Tail meatball porchetta, short 
+          ribs sausage chicken pastrami pork pork belly fatback leberkas pancetta turkey jowl swine. Bacon turducken burgdoggen pork belly corned beef, boudin sirloin. 
+          Venison pork loin pork beef ribs, bacon filet mignon swine spare ribs pastrami corned beef porchetta pork chop shankle.`,
+    thirdParagraph: `Pork belly turducken boudin cupim landjaeger pig swine corned beef drumstick salami ground round t-bone short loin picanha. Ground round chuck cow 
+          capicola pancetta flank, bacon kielbasa t-bone brisket ham hock jerky meatloaf. Sausage chislic boudin flank corned beef, biltong shoulder. Short loin boudin 
+          flank porchetta swine spare ribs short ribs. Boudin filet mignon tenderloin fatback corned beef chuck cow ground round turkey biltong ham. Ham chislic pork tri-tip 
+          doner, meatball ham hock.`
   }
 ];
 
@@ -114,3 +130,43 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+// Step 1:
+function articleMaker({ title, date, firstParagraph, secondParagraph, thirdParagraph }) {
+  const article = document.createElement('div')
+  const titleH2 = document.createElement('h2')
+  const dateParagraph = document.createElement('p')
+  const paragraph1 = document.createElement('p')
+  const paragraph2 = document.createElement('p')
+  const paragraph3 = document.createElement('p')
+  const expandButton = document.createElement('span')
+
+  article.classList.add('article')
+  dateParagraph.classList.add('date')
+  expandButton.classList.add('expandButton')
+
+  titleH2.textContent = title
+  dateParagraph.textContent = date
+  paragraph1.textContent = firstParagraph
+  paragraph2.textContent = secondParagraph
+  paragraph3.textContent = thirdParagraph
+  expandButton.textContent = '+'
+
+  // Step 2
+  expandButton.addEventListener('click', e => {
+    article.classList.toggle('article-open')
+  })
+
+  article.appendChild(titleH2)
+  article.appendChild(dateParagraph)
+  article.appendChild(paragraph1)
+  article.appendChild(paragraph2)
+  article.appendChild(paragraph3)
+  article.appendChild(expandButton)
+
+  // Step 3
+  return article
+}
+
+// Step 4
+data.forEach(item => document.querySelector('div.articles').appendChild(articleMaker(item)))
